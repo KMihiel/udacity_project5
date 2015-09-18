@@ -6,12 +6,12 @@ html, body {
 
 #map {
     height: 90%;
-    width: 80%;
-    float: right;
+    width: 100%;
+	float: right;
 }
 
 .title{
 	text-align: center;
-	background-color: #d8d8d8;
+	background-color: #b2e0e0;
 	color: #003366;
 }

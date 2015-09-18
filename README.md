@@ -4,8 +4,6 @@
 	<li> </li>
 </ol>
 
-
-
 <h3>Steps to Create project:</h3>
 <ol>
 	<li>Download KnockOut.JS Framework</li>
@@ -13,3 +11,9 @@
 	<li>Add Google Maps API and Customize Data</li>
 	<li></li>
 </ol>
+
+<h3> Resources included: </h3>
+<ul>
+	<li>Knockout.Js</li>
+	<li>Google Maps API</li>
+</ul>
