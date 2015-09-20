@@ -1,27 +1,41 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Historic Town of Milford, Pennsylvania</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  </head>
+<html lang="en">
+	<head>
+		<title>Milford, Pennsylvania Neighborhood Map</title>
+		<meta name="viewport" content="initial-scale=1.0">
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>Explore the Historic Town of Milford, PA</h1>
+			</div>
+		</div>
+		<input id="search-input" class="form-control" type="text" placeholder="Search">
+		<div id="left-info" class="info-container">
+			<div id="search-results" class="results" data-bind="visible: haveSearchResults">
+				<div class="row">
+					<div class="col-sm-12">
+						<button data-bind="click: clearResults" class="btn btn-reset">Reset Search</button>
+					</div>
+				</div>
+				<ol id="results-list" class="results-ul" data-bind="foreach: searchResults">
+					<li class="results-li" data-bind="click: $parent.resultClick, click: $parent.selectMarker">
+						<p data-bind="text: name"></p>
+						<p data-bind="text: formatted_address"></p>
+					</li>
+					<hr>
+				</ol>
+			</div>
+		</div>
+		<div id="map-canvas" class="map-canvas"></div>
 
-  <body>
-    <div class= "row">
-      <div class="col-sm-12 title">
-        <h1> The Historic Town of Milford, Pennsylvania </h1>
-        <h4> Birthplace of the American Forest Conservation Movement</h4>
-      </div>
-    </div>
-
-    <div id="map"></div>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBz2GRX39-wuEhjpoFHB5Dl7_Vv4hYdNUg&signed_in=true"></script>
-    <script src="js/view.js"></script>
-
-    
-
-  </body>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+	<script src="js/infobox.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="js/view.js"></script>
+	</body>
 </html>

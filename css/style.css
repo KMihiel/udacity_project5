@@ -1,17 +1,54 @@
-html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-
-#map {
-    height: 90%;
-    width: 100%;
-	float: right;
+/*Map styles*/
+html,
+body,
+.map-canvas {
+	height: 98%;
+	margin: 0;
+	padding: 0;
+}
+h1 {
+	text-align: center;
 }
 
-.title{
-	text-align: center;
-	background-color: #b2e0e0;
-	color: #003366;
+.form-control{
+	margin-top: 10px;
+	width: 20%;
+	margin-left:12px;
+}
+
+
+/*search result styles*/
+.info-container {
+	width: 30%;
+	height: 650px;
+	z-index: 10;
+	position: absolute;
+	top: 110px;
+}
+
+.results {
+	width: 95.5%;
+	height: 500px;
+	padding: 5px;
+	z-index: 10;
+	background-color: white;
+	margin-left: 12px;
+	margin-top: 10px;
+	border-radius: 10px;
+	overflow: auto;
+}
+
+.btn-reset{
+	float: right;
+	color: white;
+}
+
+
+.infobox-inner {
+	font-size:15px;
+	border: 3px solid gray;
+	border-radius: 10px;
+	margin-top: 8px;
+	background: white;
+	padding: 5px;
 }
