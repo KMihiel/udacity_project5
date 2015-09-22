@@ -30,6 +30,13 @@ var model = {
 		lng : "-74.809835",
 		formatted_address : "150 Water St Milford, PA 18337",
 		content : "Unique and Exciting Dining Experience",
+	},
+	{
+		name : "The Columns Museum",
+		lat : "41.326136",
+		lng : "-74.799191",
+		formatted_address : "608 Broad Street, Milford, PA 18337",
+		content : "A small town histroic museum featuring American artifacts.",
 	}
 	],
 	// initial marker for Milford PA
@@ -46,7 +53,7 @@ var model = {
 
 	resultsWidth : $("#search-results").width(),
 
-	searchMarkers : [],
+	searchMarkers : []
 };
 
 var viewModel = {
@@ -64,6 +71,7 @@ var koViewModel = {
 	haveSearchResults : ko.observable(false),
 
 	clearResults : function() {
+		this.searchResults.removeAll();
 		//hide search results box
 		this.haveSearchResults(false);
 	},
@@ -133,7 +141,7 @@ var mapView = {
 				return;
 			}
 
-			for (var i = 0, marker; marker = markers[i]; i++) {
+			for (var i = 0; i < markers.length; i++) {
 				marker.setMap(null);
 			}
 
@@ -210,7 +218,6 @@ var mapView = {
 			searchBox.setBounds(bounds);
 		});
 		mapView.setMarkers(map, viewModel.myLocs);
-		koViewModel.hideShow();
 	},
 
 	//Add my points of interest markers to the map when the page originally loads 
