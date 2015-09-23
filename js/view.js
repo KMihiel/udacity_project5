@@ -132,10 +132,7 @@ function appViewModel() {
     map.panTo(marker.position);        
   };
 
-
-  /*
-  function that gets the information from all the places that we are going to search and also pre-populate.  Pushes this info to the allPlaces array for knockout.
-  */
+ //Collect inforamtion about Places
   function getAllPlaces(place){
     var myPlace = {};    
     myPlace.place_id = place.place_id;
@@ -147,25 +144,22 @@ function appViewModel() {
       address = place.vicinity;
     } else if (place.formatted_address !== undefined) {
       address = place.formatted_address;
-    }
+    };
     myPlace.address = address;
     
     self.allPlaces.push(myPlace);                
-  }
+  };
 
-
-  /*
-  called after a search, this function clears any markers in the markersArray so that we can start with fresh map with new markers.
-  */
+  //ClearMap
   function clearOverlays() {
     for (var i = 0; i < markersArray.length; i++ ) {
      markersArray[i].setMap(null);
-    }
+    };
     markersArray.length = 0;
-  } 
+  };
 
   google.maps.event.addDomListener(window, 'load', initialize);
-}
+};
 
 $(function(){
 ko.applyBindings(new appViewModel());
