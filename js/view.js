@@ -26,7 +26,7 @@ function appViewModel() {
     computeCenter();       
 //Shows list of locations with markers
     var list = (document.getElementById('list'));
-    map.controls[google.maps.ControlPosition.RIGHT_CENTER].push(list);
+    map.controls[google.maps.ControlPosition.LEFT_CENTER].push(list);
     var input = (document.getElementById('pac-input'));
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
     var searchBox = new google.maps.places.SearchBox(
@@ -69,7 +69,7 @@ function appViewModel() {
     service.nearbySearch(request, callback);    
   };
 
-//Creates markers for lcoations
+//Creates markers for locations
   function callback(results, status){
     if (status == google.maps.places.PlacesServiceStatus.OK){
       bounds = new google.maps.LatLngBounds();
@@ -132,7 +132,7 @@ function appViewModel() {
     map.panTo(marker.position);        
   };
 
- //Collect inforamtion about Places
+ //Collect information about Places
   function getAllPlaces(place){
     var myPlace = {};    
     myPlace.place_id = place.place_id;
