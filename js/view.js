@@ -10,6 +10,7 @@ function appViewModel() {
   var markersArray = [];  
 // array to hold info for knockout
   self.allPlaces = ko.observableArray([]);
+  self.foursquareInfo = '';
 // Finds the center of the map to get lat and lng values
   function computeCenter() {
     var latAndLng = map.getCenter();
@@ -101,7 +102,7 @@ function appViewModel() {
     } else if (place.formatted_address !== undefined) {
       address = place.formatted_address;
     };     
-    var contentString = '<div>' + place.name + '</div><div>' + address + '</div>';
+    var contentString = '<div>' + place.name + '</div><div>' + address + '</div>' + self.foursquareInfo ;
 
     google.maps.event.addListener(marker, 'click', function() {      
       infowindow.setContent(contentString);      
@@ -115,6 +116,43 @@ function appViewModel() {
     markersArray.push(marker);
     return marker;
   };
+
+  // Foursquare Credentials
+  var clientID = 'UVSLUM00CXLUB1P0UKPJSLDTG0VVYQ2E20W1C045PBU1OJNZ';
+  var clientSecret = 'JERNMOY0EUXF4LGZTWDLLJFR2CXWDSZWL1JU2W5CS1POPZBF';
+
+  this.getFoursquareInfo = function(point) {
+    // creats our foursquare URL
+    var foursquareURL = 'https://api.foursquare.com/v2/venues/search?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20150321' + '&ll=' +lat+ ',' +lng+ '&query=\'' +point.name +'\'&limit=1';
+    
+    $.getJSON(foursquareURL)
+      .done(function(response) {
+        self.foursquareInfo = '<p>Foursquare:<br>';
+        var venue = response.response.venues[0];         
+        // Name       
+        var venueName = venue.name;
+            if (venueName !== null && venueName !== undefined) {
+                self.foursquareInfo += 'Name: ' +
+                  venueName + '<br>';
+            } else {
+              self.foursquareInfo += 'Name: Not Found';
+            }   
+        // Phone Number     
+        var phoneNum = venue.contact.formattedPhone;
+            if (phoneNum !== null && phoneNum !== undefined) {
+                self.foursquareInfo += 'Phone: ' +
+                  phoneNum + '<br>';
+            } else {
+              self.foursquareInfo += 'Phone: Not Found';
+            }
+        // Twitter
+        var twitterId = venue.contact.twitter;
+            if (twitterId !== null && twitterId !== undefined) {
+              self.foursquareInfo += 'twitter: @' +
+                  twitterId + '<br>';
+            } 
+      });
+  };  
    
   //Change position to center over active marker
   self.clickMarker = function(place) {
@@ -128,9 +166,11 @@ function appViewModel() {
         setTimeout(function(){marker.setAnimation(null);}, 1450);
         break; 
       };
-    } ;        
+    } ;   
+    self.getFoursquareInfo(place);      
     map.panTo(marker.position);        
   };
+
 
  //Collect information about Places
   function getAllPlaces(place){
