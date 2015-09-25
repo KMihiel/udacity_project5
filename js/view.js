@@ -122,12 +122,12 @@ function appViewModel() {
   var clientSecret = 'SIRBV2BL4LCZGNZVXI4NPVGQ2VYOCBQMFKZACKMGXMZY1NKA';
 
   this.getFoursquareInfo = function(point) {
-    // creats our foursquare URL
+    // FoursQuare API
     var foursquareURL = 'https://api.foursquare.com/v2/venues/search?client_id=' + clientID + '&client_secret=' + clientSecret + '&v=20150321' + '&ll=' +lat+ ',' +lng+ '&query=\'' +point.name +'\'&limit=1';
     
     $.getJSON(foursquareURL)
       .done(function(response) {
-        self.foursquareInfo = '<p>Foursquare:<br>';
+        self.foursquareInfo = '<br> Check it out on Foursquare:<br>';
         var venue = response.response.venues[0];         
         // Name       
         var venueName = venue.name;
@@ -136,7 +136,15 @@ function appViewModel() {
                   venueName + '<br>';
             } else {
               self.foursquareInfo += 'Name: Not Found';
-            }   
+            }; 
+        // Twitter
+        var twitterId = venue.contact.twitter;
+            if (twitterId !== null && twitterId !== undefined) {
+              self.foursquareInfo += 'Tweet: @' +
+                  twitterId + '<br>';
+            }else {
+              self.foursquareInfo += 'Sadly, we are not on Twitter Yet!<br>';
+            };  
         // Phone Number     
         var phoneNum = venue.contact.formattedPhone;
             if (phoneNum !== null && phoneNum !== undefined) {
@@ -144,13 +152,7 @@ function appViewModel() {
                   phoneNum + '<br>';
             } else {
               self.foursquareInfo += 'Phone: Not Found';
-            }
-        // Twitter
-        var twitterId = venue.contact.twitter;
-            if (twitterId !== null && twitterId !== undefined) {
-              self.foursquareInfo += 'twitter: @' +
-                  twitterId + '<br>';
-            } 
+            };
       });
   };  
    
@@ -169,6 +171,13 @@ function appViewModel() {
     } ;   
     self.getFoursquareInfo(place);      
     map.panTo(marker.position);        
+//getFoursquare async function to finish
+    setTimeout(function() {
+      var contentString = '<div>' + place.name + '</div><div>' + place.address + '</div>' + self.foursquareInfo;
+      infowindow.setContent(contentString);
+      infowindow.open(map, marker); 
+      marker.setAnimation(google.maps.Animation.DROP); 
+    }, 300);     
   };
 
 
