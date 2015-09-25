@@ -118,8 +118,8 @@ function appViewModel() {
   };
 
   // Foursquare Credentials
-  var clientID = 'UVSLUM00CXLUB1P0UKPJSLDTG0VVYQ2E20W1C045PBU1OJNZ';
-  var clientSecret = 'JERNMOY0EUXF4LGZTWDLLJFR2CXWDSZWL1JU2W5CS1POPZBF';
+  var clientID = '2A1O1V1XGHQIYCV0MXM4MQRC45VGLSXILIAFWLV05RUHF3CG';
+  var clientSecret = 'SIRBV2BL4LCZGNZVXI4NPVGQ2VYOCBQMFKZACKMGXMZY1NKA';
 
   this.getFoursquareInfo = function(point) {
     // creats our foursquare URL
