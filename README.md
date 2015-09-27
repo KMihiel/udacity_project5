@@ -1,15 +1,14 @@
-<h3>Udacity Project 5: Neighborhood Map of Milford, Pennsylvania.</h3>
- <ol>
- 	<li> Open Index.html in a web browser </li>
-	<li> The Map displays Milford,PA </li>
-	<li> Markers indicate locations of interest </li>
- </ol>
+# Udacity Project 5: Neighborhood Map of Milford, Pennsylvania #
+
+ 	* Open Index.html in a web browser 
+	* The Map displays Milford,PA 
+	* Markers indicate locations of interest
+
+# Steps to Create project: #
+ 	*Download KnockOut.JS Framework
+ 	*Include Bootstrap &amp; CSS 
+ 	*Add Google Maps API and Customize Data
+	*Impliment Knockout.Js
+
  
- <h3>Steps to Create project:</h3>
- 	<li>Download KnockOut.JS Framework</li>
- 	<li>Include Bootstrap &amp; CSS </li>
- 	<li>Add Google Maps API and Customize Data</li>
-	<li>Impliment Knockout.Js</li>
- </ol>
- 
- <h3> Resources included: </h3>
+# Resources included: #
