@@ -1,10 +1,10 @@
 function appViewModel() {
   var self = this; 
-  var map;
-  var service;
-  var infowindow;
-  var lat = '';
-  var lng = '';
+  var map,
+      service,
+      infowindow,
+      lat = '',
+      lng = '';
   //Lat and Lng of Milford Pennslyvania
   var Milford = new google.maps.LatLng(41.3242,-74.8028);
   var markersArray = [];  
@@ -177,8 +177,8 @@ function appViewModel() {
       var contentString = '<div>' + place.name + '</div><div>' + place.address + '</div>' + self.foursquareInfo;
       infowindow.setContent(contentString);
       infowindow.open(map, marker); 
-      marker.setAnimation(google.maps.Animation.DROP); 
-    }, 300);     
+      marker.setAnimation(google.maps.Animation.bounce); 
+    }, 600);     
   };
 
 
