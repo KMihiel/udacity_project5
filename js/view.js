@@ -5,27 +5,27 @@ function appViewModel() {
   var infowindow;
   var lat = '';
   var lng = '';
-//Lat and Lng of Milford Pennslyvania
+  //Lat and Lng of Milford Pennslyvania
   var Milford = new google.maps.LatLng(41.3242,-74.8028);
   var markersArray = [];  
-// array to hold info for knockout
+  // array to hold info for knockout
   self.allPlaces = ko.observableArray([]);
   self.foursquareInfo = '';
-// Finds the center of the map to get lat and lng values
+  // Finds the center of the map to get lat and lng values
   function computeCenter() {
     var latAndLng = map.getCenter();
       lat = latAndLng.lat();
       lng = latAndLng.lng(); 
   };
 
-//Loads Map, Search & List Locations
+  //Loads Map, Search & List Locations
   function initialize() {
     map = new google.maps.Map(document.getElementById('map-canvas'), {
     center: Milford,    
     });
     getPlaces();
     computeCenter();       
-//Shows list of locations with markers
+    //Shows list of locations with markers
     var list = (document.getElementById('list'));
     map.controls[google.maps.ControlPosition.LEFT_CENTER].push(list);
     var input = (document.getElementById('pac-input'));
@@ -57,7 +57,7 @@ function appViewModel() {
     });      
   };
 
-// Function to show markers on the map with place types created by google
+  // Function to show markers on the map with place types created by google
   function getPlaces() {
     var request = {
       location: Milford,
@@ -70,7 +70,7 @@ function appViewModel() {
     service.nearbySearch(request, callback);    
   };
 
-//Creates markers for locations
+  //Creates markers for locations
   function callback(results, status){
     if (status == google.maps.places.PlacesServiceStatus.OK){
       bounds = new google.maps.LatLngBounds();
@@ -86,21 +86,21 @@ function appViewModel() {
   };
 
 
-//Function to create a marker at each place.
+  //Function to create a marker at each place.
   function createMarker(place) {
     var marker = new google.maps.Marker({
       map: map,
       name: place.name.toLowerCase(),
       position: place.geometry.location,
       place_id: place.place_id,
-  // Added brief animation where markers drop onto map
+      // Added brief animation where markers drop onto map
       animation: google.maps.Animation.DROP
     });    
     var address;
-    if (place.vicinity !== undefined) {
-      address = place.vicinity;
-    } else if (place.formatted_address !== undefined) {
+    if (place.formatted_address !== undefined) {
       address = place.formatted_address;
+    } else if (place.vicinity !== undefined) {
+      address = place.vicinity;
     };     
     var contentString = '<div>' + place.name + '</div><div>' + address + '</div>' + self.foursquareInfo ;
 
@@ -108,7 +108,7 @@ function appViewModel() {
       infowindow.setContent(contentString);      
       infowindow.open(map, this);
       map.panTo(marker.position); 
-  // Added brief bounce to markers when clicked on map
+      // Added brief bounce to markers when clicked on map
       marker.setAnimation(google.maps.Animation.BOUNCE);
       setTimeout(function(){marker.setAnimation(null);}, 1450);
     });
@@ -116,6 +116,7 @@ function appViewModel() {
     markersArray.push(marker);
     return marker;
   };
+
 
   // Foursquare Credentials
   var clientID = '2A1O1V1XGHQIYCV0MXM4MQRC45VGLSXILIAFWLV05RUHF3CG';
@@ -171,7 +172,7 @@ function appViewModel() {
     } ;   
     self.getFoursquareInfo(place);      
     map.panTo(marker.position);        
-//getFoursquare async function to finish
+  //getFoursquare async function to finish
     setTimeout(function() {
       var contentString = '<div>' + place.name + '</div><div>' + place.address + '</div>' + self.foursquareInfo;
       infowindow.setContent(contentString);
@@ -181,7 +182,7 @@ function appViewModel() {
   };
 
 
- //Collect information about Places
+  //Collect information about Places
   function getAllPlaces(place){
     var myPlace = {};    
     myPlace.place_id = place.place_id;
