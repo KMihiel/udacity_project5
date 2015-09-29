@@ -10,6 +10,34 @@ function appViewModel() {
   var markersArray = [];  
   // array to hold info for knockout
   self.allPlaces = ko.observableArray([]);
+
+// hold search text
+  self.searchText = ko.observable('');
+
+// computed array with places that match the filter
+self.filterPlaces = ko.computed(function() {
+  var returnArray = [];
+// hide all markers
+  for (var i=0; i<markersArray.length; i++) {
+    markersArray[i].setVisible(false);
+  }
+  for (var j=0,place; j<self.allPlaces().length; j++) {
+    place = self.allPlaces()[j];
+    if (self.searchText() === '' || place.name.indexOf(self.searchText()) > -1) {
+// add those places where name contains search text
+      returnArray.push(place);
+      for(var e = 0; e < markersArray.length; e++) {      
+// makes those markers visible
+        if(place.place_id === markersArray[e].place_id) { 
+          markersArray[e].setVisible(true);
+        }
+      }  
+    }
+  }
+  return returnArray;
+});
+  
+
   self.foursquareInfo = '';
   // Finds the center of the map to get lat and lng values
   function computeCenter() {
