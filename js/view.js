@@ -90,7 +90,7 @@ self.filterPlaces = ko.computed(function() {
     var request = {
       location: Milford,
       radius: 600,
-      types: ['museum','library','bakery', 'bar']
+      types: ['museum','library','bakery', 'bar','cafe','spa']
     };
 
     infowindow = new google.maps.InfoWindow();
