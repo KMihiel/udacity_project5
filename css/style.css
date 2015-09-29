@@ -9,9 +9,14 @@ body {
 h1, 
 h2 {
     text-align: center;
-    color: gray!important;
+    color: #339966!important;
 }
-
+.filter{
+    margin-left: 25px;
+}
+.searchtext{
+    color: black;
+}
 .name {
     font-size: 14px;
     font-weight: bold;

@@ -30,10 +30,10 @@ self.filterPlaces = ko.computed(function() {
 // makes those markers visible
         if(place.place_id === markersArray[e].place_id) { 
           markersArray[e].setVisible(true);
-        }
-      }  
-    }
-  }
+        };
+      }; 
+    };
+  };
   return returnArray;
 });
   

@@ -12,17 +12,13 @@
     <div class ="row">
         <div class="col-lg-12">
             <h1> The Historic Town of Milford, PA </h1>
- 
-<!-- ADD A NEW INPUT FIELD TO FILTER THE INFORMATION -->
-            <p>Filter Data<input data-bind="textInput: searchText"/></p>
-<!--  -->
+            <p class="filter">Filter Locations of Interest <input data-bind="textInput: searchText"/></p>
         </div>
     </div>
     <input id="pac-input" class="controls" type="search" placeholder="Search Milford, PA">
     <div id="map-canvas"></div>
     <div id="list">
         <h2>Locations of Interest</h2>
-<!-- CHANGE THE LIST TO DISPLAY VALUES BASED ON THE COMPUTED ARRAY -->
         <ol data-bind="foreach: filterPlaces">
             <li data-bind="click: $parent.clickMarker"> 
             <hr>               
