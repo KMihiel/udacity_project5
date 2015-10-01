@@ -28,8 +28,9 @@
         </ol>
     </div>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
-    <script src="js/lib/knockout-3.2.0.js"></script>
+        <!-- the script above cannot be run async because it requires the libraries/places-->
+    <script src="js/lib/knockout-3.2.0.js" async></script>
     <script src="js/lib/jquery.min.js"></script>
-    <script src="js/view.js"></script>  
+    <script src="js/view.js" async></script>  
 </body>
 </html>
